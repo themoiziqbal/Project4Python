@@ -1,23 +1,31 @@
+"""
+Project 4: Rock, paper, scissors Python Project
+https://www.freecodecamp.org/news/python-projects-for-beginners/#heading-rock-paper-scissors-python-project
+
+
+"""
 import random
 
 def play():
-    user = input("What's your choice? 'r' for rock, 'p' for paper, 's' for scissors\n")
-    computer = random.choice(['r', 'p', 's'])
-
-    if user == computer:
-        return 'It\'s a tie'
+    options = ["rock", "paper", "scissors"]
+    user_choice = input("Choose rock, paper, or scissors: ").lower()
     
+    if user_choice not in options:
+        print("Invalid choice! Please select rock, paper, or scissors.")
+        return play()
 
-    if is_win(user, computer):
-        return 'You won!'
+    computer_choice = random.choice(options)
     
-    return 'You lost!'
+    print(f"You chose: {user_choice}")
+    print(f"Computer chose: {computer_choice}")
 
-def is_win(player, opponent):
-    if (player == 'r' and opponent == 's') or (player == 's' and opponent == 'p') \
-    or (player == 'p' and opponent == 'r'):
-        
-        return True
-    
-print(play())
+    if user_choice == computer_choice:
+        print("It's a tie! 🤝")
+    elif (user_choice == "rock" and computer_choice == "scissors") or \
+         (user_choice == "scissors" and computer_choice == "paper") or \
+         (user_choice == "paper" and computer_choice == "rock"):
+        print("You win! 🎉")
+    else:
+        print("Computer wins! 😢")
 
+play()
